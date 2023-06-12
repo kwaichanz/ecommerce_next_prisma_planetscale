@@ -15,7 +15,7 @@ datasource db {
 model Category {
   id       String    @id @default(cuid())
   name     String    @unique
-  createAt DateTime  @default(now())
+  createdAt DateTime  @default(now())
   products Product[]
 }
 
