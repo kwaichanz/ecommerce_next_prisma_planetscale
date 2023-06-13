@@ -1,7 +1,7 @@
 export type TApiAllCategoriesResp = {
   categories: {
     id: string;
-    nbame: string;
+    name: string;
     products: {
       title: string;
       description: string;
@@ -14,7 +14,7 @@ export type TApiAllCategoriesResp = {
 export type TApiSingleCategoryWithProductResp = {
   category: {
     id: string;
-    nbame: string;
+    name: string;
     products: {
       id: string;
       title: string;

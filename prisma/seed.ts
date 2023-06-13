@@ -6,19 +6,19 @@ import {
 } from "@ngneat/falso";
 import { PrismaClient } from "@prisma/client";
 
-const primsa = new PrismaClient();
+const prisma = new PrismaClient();
 
 const main = async () => {
   try {
-      await primsa.category.deleteMany();
-      await primsa.product.deleteMany();
+      await prisma.category.deleteMany();
+      await prisma.product.deleteMany();
       const fakeProducts = randProduct({
           length: 1000,
       });
       for (let index = 0; index < fakeProducts.length; index++) {
           const product = fakeProducts[index];
           const productAdjective = randProductAdjective();
-          await primsa.product.upsert({
+          await prisma.product.upsert({
               where: {
                   title: `${productAdjective} ${product.title}`,
               },
