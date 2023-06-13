@@ -1,20 +1,49 @@
+import { useQuery } from "@tanstack//react-query";
 import type { NextPage } from "next";
 import Head from "next/head";
+import NavBar from "../component/Navbar";
+import ProductGrid from "../component/ProductGrid";
+import Skelton from "../component/Skelton";
 
 const Home: NextPage = () => {
-    return (
-        <div>
-            <Head>
-                <title>All Products</title>
-                <meta name="description" content="All Products" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+  const getAllCategories = async () => {
+    try {
+      const respJSON = await fetch("/api/categories");
+      const resp = await respJSON.json();
+      return resp;
+    } catch (error) {
+      throw error;
+    }
+  };
 
-            <main className="container mx-auto">
-                <h1 className="h-1">HelloDD</h1>
-            </main>
-        </div>
-    );
+  const { isLoading, data } = useQuery(
+    ["AllCategoriesWithProducts"],
+    getAllCategories
+  );
+  const categories = data?.categories;
+
+  return (
+    <div>
+      <Head>
+        <title>All Products</title>
+        <meta name="description" content="All Products" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="container mx-auto">
+        <Navbar />
+        {isLoading ? (
+          <Skelton />
+        ) : (
+          <>
+            {categories && categories.length > 0 && (
+              <ProductGrid showLink={true} categories={categories} />
+            )}
+          </>
+        )}
+      </main>
+    </div>
+  );
 };
 
 export default Home;
