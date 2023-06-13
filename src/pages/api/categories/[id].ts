@@ -7,7 +7,7 @@ import {
 } from "../../../types";
 
 
-// Query a single category while litmiting(pagiation) the result up to only 12 items
+// Query a single category while litmiting the result up to only 12 items
 export const getSingleCategory = async (
   req: NextApiRequest,
   res: NextApiResponse<TApiSingleCategoryWithProductResp | TApiErrorResp>

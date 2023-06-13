@@ -34,7 +34,7 @@ const ProductGrid = (props: IProductGrid) => {
             </span>
             {showLink && (
               <NextLink href={`/category/${category.id}`}>
-                <p className="flex flex-row gap-2 underline hover:cursor-pointer items-center">
+                <p className="flex flex-row gap-2 underline hover:cursor-pointer items-center text-black">
                   View More
                   <AiOutlineRight />
                 </p>
