@@ -6,52 +6,52 @@ import {
 } from "@ngneat/falso";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const primsa = new PrismaClient();
 
 const main = async () => {
   try {
-      await prisma.category.deleteMany();
-      await prisma.product.deleteMany();
-      const fakeProducts = randProduct({
-          length: 1000,
-      });
-      for (let index = 0; index < fakeProducts.length; index++) {
-          const product = fakeProducts[index];
-          const productAdjective = randProductAdjective();
-          await prisma.product.upsert({
+    await primsa.category.deleteMany();
+    await primsa.product.deleteMany();
+    const fakeProducts = randProduct({
+      length: 1000,
+    });
+    for (let index = 0; index < fakeProducts.length; index++) {
+      const product = fakeProducts[index];
+      const productAdjective = randProductAdjective();
+      await primsa.product.upsert({
+        where: {
+          title: `${productAdjective} ${product.title}`,
+        },
+        create: {
+          title: `${productAdjective} ${product.title}`,
+          description: product.description,
+          price: product.price,
+          image: `${product.image}/tech`,
+          quantity: randNumber({ min: 10, max: 100 }),
+          category: {
+            connectOrCreate: {
               where: {
-                  title: `${productAdjective} ${product.title}`,
+                name: product.category,
               },
               create: {
-                  title: `${productAdjective} ${product.title}`,
-                  description: product.description,
-                  price: product.price,
-                  image: `${product.image}/tech`,
-                  quantity: randNumber({ min: 10, max: 100 }),
-                  category: {
-                      connectOrCreate: {
-                          where: {
-                              name: product.category,
-                          },
-                          create: {
-                              name: product.category,
-                              createdAt: randBetweenDate({
-                                  from: new Date("10/06/2020"),
-                                  to: new Date(),
-                              }),
-                          },
-                      },
-                  },
-                  createAt: randBetweenDate({
-                      from: new Date("10/07/2020"),
-                      to: new Date(),
-                  }),
+                name: product.category,
+                createdAt: randBetweenDate({
+                  from: new Date("10/06/2020"),
+                  to: new Date(),
+                }),
               },
-              update: {},
-          });
-      }
+            },
+          },
+          createAt: randBetweenDate({
+            from: new Date("10/07/2020"),
+            to: new Date(),
+          }),
+        },
+        update: {},
+      });
+    }
   } catch (error) {
-      throw error;
+    throw error;
   }
 };
 
