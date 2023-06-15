@@ -28,6 +28,7 @@ const checkoutSession = async (req: NextApiRequest, res: NextApiResponse) => {
               images: [body.image],
               description: body?.description,
             },
+            unit_amount_decimal: formatedPrice.toString(),
           },
           quantity: 1,
         },
