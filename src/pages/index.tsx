@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       <Head>
         <title>All Products</title>
         <meta name="description" content="All Products" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favico.ico" />
       </Head>
 
       <main className="container mx-auto">

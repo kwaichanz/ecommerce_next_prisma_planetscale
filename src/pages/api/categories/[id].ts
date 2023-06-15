@@ -24,7 +24,7 @@ export const getSingleCategory = async (
           name: true,
           products: {
             orderBy: {
-              createAt: "desc",
+              createdAt: "desc",
             },
             take: 12,
             skip: 1,
