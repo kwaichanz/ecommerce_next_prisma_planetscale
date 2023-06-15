@@ -42,7 +42,7 @@ const main = async () => {
               },
             },
           },
-          createAt: randBetweenDate({
+          createdAt: randBetweenDate({
             from: new Date("10/07/2020"),
             to: new Date(),
           }),
