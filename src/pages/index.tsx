@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
   // Cache the data with AllCategoriesWithProducts key
   const { isLoading, data } = useQuery(
-    ["AllCategoreiesWithProducts"],
+    ["AllCategoriesWithProducts"],
     getAllCategories
   );
 
